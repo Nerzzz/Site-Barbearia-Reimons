@@ -6,15 +6,15 @@
         <title>Barbearia Reimons</title>
         <link rel="shortcut icon" href="public/icons/favicon.png" type="image/x-icon">
 
-        <link rel="stylesheet" href="src/styles/index.css">
         <link rel="stylesheet" href="src/styles/root.css">
+        <link rel="stylesheet" href="src/styles/index.css">
     </head>
     <body>
         <header>
             
         </header>
         <main>
-            <section class="hero">
+            <section id="hero">
                 <video src="public/videos/video_barber_2.mp4" autoplay muted loop></video>
                 <div class="content">
                     <div class="hook">
@@ -31,13 +31,27 @@
                             <span>Realizar agendamento</span>
                         </button>
                     </div>
-                    <div class="deco">
+                    <a class="deco" href="#sobre">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevrons-down">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M7 7l5 5l5 -5" />
                             <path d="M7 13l5 5l5 -5" />
                         </svg>
-                    </div>
+                    </a>
+                </div>
+            </section>
+            <section id="sobre" class="flex-row-warp">
+                <div class="content">
+                    <h2>Quem somos?</h2>
+                    <p>Somos uma barbearia feita pra quem gosta de sair daqui com o visual em dia. Trabalhamos com cortes, barba e aquele acabamento caprichado que faz toda a diferença. Mais do que cortar cabelo, queremos que você se sinta à vontade, troque uma ideia e aproveite o momento.</p>
+                    <p class="accent">Chega, senta na cadeira e deixa o resto com a gente.</p>
+                </div>
+                <img src="public/images/image01.png" alt="">
+            </section>
+            <section id="servicos">
+                <div class="content">
+                    <h2>Serviços disponíveis</h2>
+                    <span class="observation">Imagens meramente ilustrativas</span>
                 </div>
             </section>
         </main>
