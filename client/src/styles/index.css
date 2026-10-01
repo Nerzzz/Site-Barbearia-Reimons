@@ -23,7 +23,7 @@
         height: 100%;
         align-items: center;
         color: var(--color-white);
-        padding: 0 120px;
+        padding: 0 clamp(5px, 6vw, 120px);
         
         .hook p{
             margin-top: 10px;
@@ -31,7 +31,11 @@
             color: #dedede;
         }
 
-        .hook h1 { color: var(--color-white) !important; }
+        .hook h1 { 
+            color: var(--color-white) !important;
+            font-size: clamp(30px, 5vw, 80px);
+            line-height: clamp(30px, 5vw, 80px);
+        }
 
         .hook button{
             display: flex;
@@ -68,6 +72,7 @@
 #sobre{ 
     flex-direction: row;
     align-items: center;
+    gap: 30px;
     
     .content{
         display: flex;
@@ -83,11 +88,20 @@
         }
     }
 
-    img{
-        flex: 1 1 20%;
+    .image-box{
+        flex: 1 1 55%;
+        display: flex;
+        justify-content: center;
         max-width: 100%;
         max-height: 450px;
-        border-radius: 5px;
-        object-fit: cover;
+        perspective: 600px;
+
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 5px;
+            object-fit: cover;
+        }
     }
+    
 }

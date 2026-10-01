@@ -72,13 +72,13 @@ body{
 main{
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    gap: 120px;
 }
 
 section{
     display: flex;
     flex-direction: column;
-    padding: 30px 58px;
+    padding: 0 58px;
     gap: 80px;
 }
 
@@ -100,4 +100,13 @@ section{
 .observation::before{
     content: "* ";
     color: var(--color-light-gray);
+}
+
+.negative{
+    filter: saturate(0) drop-shadow(0 0 1px #4f4f4f40);
+    transition: 200ms ease-in;
+}
+.negative:hover{
+    filter: saturate(1.2) drop-shadow(20px 0 20px #4f4f4f42);
+    transform: scale(1.02) rotate3d(0, -60, 10, 4deg);
 }

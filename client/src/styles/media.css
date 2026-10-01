@@ -1,0 +1,11 @@
+@media screen and (max-width: 500px) {
+    #hero .content .hook{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p,h1,s{
+            text-align: center;
+        }
+    }
+}
