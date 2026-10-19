@@ -1,4 +1,4 @@
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
     #hero .content .hook{
         display: flex;
         flex-direction: column;
@@ -6,6 +6,32 @@
 
         p,h1,s{
             text-align: center;
+        }
+    }
+
+    #servicos{
+        .cards-grid{
+            display: flex !important;
+            flex-direction: column;
+
+            .card, .more{ max-height: 300px; }
+        }
+    }
+}
+
+@media screen and (max-width: 1300px){
+    #servicos{
+        .cards-grid{
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(300px, 1fr));
+            grid-template-rows: repeat(3, minmax(300px, 300px));
+            gap: 15px;
+
+            .more{ 
+                max-height: 300px;
+                grid-area: 3 / 1 / 4 / 3;
+            }
         }
     }
 }

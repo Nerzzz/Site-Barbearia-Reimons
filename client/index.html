@@ -9,14 +9,36 @@
         <link rel="stylesheet" href="src/styles/root.css">
         <link rel="stylesheet" href="src/styles/index.css">
         <link rel="stylesheet" href="src/styles/media.css">
+
+        <script src="./src/script/utils.js" defer></script>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     </head>
     <body>
-        <header>
-            
+        <header id="header">
+            <img id="header-logo" src="./public/images/logo/light.svg" alt="Logo da barbearia">
+            <nav>
+                <a href="#sobre">Quem somos</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#localizacao">Localização</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#footer">Contato</a>
+            </nav>
+            <a href="" class="btn-agendar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cut">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                    <path d="M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                    <path d="M9.15 14.85l8.85 -10.85" />
+                    <path d="M6 4l8.85 10.85" />
+                </svg>
+            </a>
         </header>
         <main>
             <section id="hero">
-                <video src="public/videos/video_barber_2.mp4" autoplay muted loop></video>
+                <video src="public/videos/video_barber_2.webm" autoplay muted loop></video>
                 <div class="content">
                     <div class="hook">
                         <h1>CORTE COM PERSONALIDADE</h1>
@@ -48,17 +70,72 @@
                     <p class="accent">Chega, senta na cadeira e deixa o resto com a gente.</p>
                 </div>
                 <div class="image-box">
-                    <img src="public/images/image01.png" class="negative" alt="">
+                    <img src="public/images/image01.webp" class="negative rotate3d" alt="">
                 </div>
             </section>
+
             <section id="servicos">
                 <div class="content">
                     <h2>Serviços disponíveis</h2>
                     <span class="observation">Imagens meramente ilustrativas, não representam o trabalho acabado</span>
                 </div>
+                <div class="cards-grid">
+                    <div class="card rotate3d negative">
+                        <img src="./public/images/corte-cabelo.webp" class="" alt="Corte de cabelo">
+                        <span>Cabelo</span>
+                    </div>
+                    <div class="card rotate3d negative">
+                        <img src="./public/images/barba.webp" alt="Corte de barba">
+                        <span>Barba</span>
+                    </div>
+                    <div class="card rotate3d negative">
+                        <img src="./public/images/pezinho.webp" alt="Corte de pezinho">
+                        <span>Pezinho</span>
+                    </div>
+                    <div class="card rotate3d negative">
+                        <img src="./public/images/hidratacao.webp" alt="Hidratação capilar">
+                        <span>Hidratação</span>
+                    </div>
+                    <div class="more">
+                        <h2>E MAIS</h2>
+                        <p>Confira todos os serviços que oferecemos!</p>
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-cut">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                <path d="M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                <path d="M9.15 14.85l8.85 -10.85" />
+                                <path d="M6 4l8.85 10.85" />
+                            </svg>
+                            <span>Realizar agendamento</span>
+                        </button>
+                    </div>
+                </div>
             </section>
-            <section>
-
+            <section id="localizacao" class="flex-row-warp">
+                <div class="content">
+                    <h2>Onde estamos?</h2>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-map-pin">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6" />
+                            </svg>
+                            <p>Avenida Raposo Tavares, 632, Pauliceia, Piracicaba - SP</p>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-clock-hour-7">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-4.007 8.777l.007 -.117v-5a1 1 0 0 0 -2 0v4.696l-1.832 2.75a1 1 0 0 0 .184 1.316l.093 .07a1 1 0 0 0 1.387 -.277l2.024 -3.038l.06 -.116l.032 -.081l.03 -.109z" />
+                            </svg>
+                            <p>
+                                Segunda à sexta: 8:00 às 20:00 <br>
+                                Sábado: 8:00 às 18:00
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div id="map"></div>
             </section>
         </main>
     </body>

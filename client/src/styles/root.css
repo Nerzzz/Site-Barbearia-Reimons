@@ -17,6 +17,8 @@
 
     --color-light-gray: #878787;
     --color-gray: #535353;
+
+    --linear-grad-blue: linear-gradient(#1e53a3, #294b7e);
 }
 
 *{
@@ -42,7 +44,15 @@ h2{
     color: var(--color-title);
 }
 
-p{
+h3{
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 24pt;
+    line-height: 24pt;
+    color: var(--color-title);
+}
+
+p, a{
     color: var(--color-corpo);
     font-family: var(--font-corpo);
     font-size: 12pt;
@@ -63,6 +73,11 @@ button{
     align-items: center;
 }
 
+html{
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-light-gray) var(--color-white);
+}
+
 body{
     display: flex;
     flex-direction: column;
@@ -75,11 +90,48 @@ main{
     gap: 120px;
 }
 
+header{
+    z-index: 50000;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    img{
+        width: 70px;
+    }
+
+    nav{
+        display: flex;
+        gap: 30px;
+    }
+
+    a{
+        display: flex;
+        align-items: center;
+        color: var(--color-white);
+        text-decoration: none;
+        font-weight: 500;
+    }
+}
+
+.header-dark{
+    background: rgba(246, 246, 246, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.9px);
+    -webkit-backdrop-filter: blur(8.9px);
+    border: 1px solid rgba(246, 246, 246, 0.28);
+
+    a{ color: var(--color-corpo); }
+}
+
 section{
     display: flex;
     flex-direction: column;
     padding: 0 58px;
-    gap: 80px;
+    gap: 60px;
 }
 
 .flex-row-warp{
@@ -103,10 +155,23 @@ section{
 }
 
 .negative{
-    filter: saturate(0) drop-shadow(0 0 1px #4f4f4f40);
+    filter: saturate(0);
     transition: 200ms ease-in;
+
+    img{ transition: 200ms ease-in; filter: brightness(0.7); }
 }
 .negative:hover{
-    filter: saturate(1.2) drop-shadow(20px 0 20px #4f4f4f42);
+    filter: saturate(1.2);
+
+    img{ filter: brightness(1); }
+}
+
+.rotate3d{
+    transition: 200ms ease-in;
+    box-shadow: 0 0 1px #4f4f4f40;
+}
+.rotate3d:hover{
+    z-index: 500;
     transform: scale(1.02) rotate3d(0, -60, 10, 4deg);
+    box-shadow: 20px 0 30px #4f4f4f40;
 }
