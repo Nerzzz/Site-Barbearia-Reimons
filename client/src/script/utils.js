@@ -19,7 +19,7 @@ function setHeaderTextColor(){
             }
         });
     },{
-        threshold: 0
+        threshold: 0.15
     });
 
     observer.observe(hero);
@@ -31,19 +31,20 @@ function loadMap(){
     const lat = -22.7505776;
     const lon = -47.6529226;
 
-    let map = L.map('map', {
+    const map = L.map("map", {
         dragging: false,
         scrollWheelZoom: false,
         touchZoom: false
     }).setView([lat, lon], 15);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    L.marker([lat, lon]).addTo(map)
-        .bindPopup('<p>Avenida Raposo Tavares, 632, Pauliceia</p>')
-        .openPopup();
+    const marker = L.marker([lat, lon]).addTo(map);
+    marker.on("click", function () {
+        window.open("https://maps.app.goo.gl/MnVEBLTFdu9kScCX6","_blank");
+    });
 }
 
 loadMap();

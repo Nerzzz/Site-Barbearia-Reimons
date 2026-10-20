@@ -18,7 +18,7 @@
     --color-light-gray: #878787;
     --color-gray: #535353;
 
-    --linear-grad-blue: linear-gradient(#1e53a3, #294b7e);
+    --linear-grad-blue: linear-gradient(#1e53a3, #143c77);
 }
 
 *{
@@ -82,6 +82,7 @@ body{
     display: flex;
     flex-direction: column;
     background-color: #f8f8f8;
+    overflow-x: clip;
 }
 
 main{
@@ -174,4 +175,29 @@ section{
     z-index: 500;
     transform: scale(1.02) rotate3d(0, -60, 10, 4deg);
     box-shadow: 20px 0 30px #4f4f4f40;
+}
+
+.decorated-section{
+    position: relative;
+    overflow-x: clip;
+}
+
+.section-deco{
+    position: absolute;
+    color: #9494942c;
+    width: 200px;
+    height: 200px;
+    z-index: -2000;
+}
+
+.sd-left{
+    top: -50px;
+    left: -30px;
+    rotate: 25deg;
+}
+
+.sd-right{
+    bottom: -150px;
+    right: -25px;
+    rotate: -25deg;
 }
