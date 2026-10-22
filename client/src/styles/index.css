@@ -227,6 +227,8 @@
                 p{ color: var(--color-white); }
             }
         }
+
+        .observation, .observation::before { color: var(--color-white); opacity: 0.65; }
     }
 }
 
@@ -236,6 +238,7 @@
         grid-template-columns: repeat(3, minmax(400px, 1fr));
         grid-template-rows: repeat(2, 400px);
         gap: 15px;
+        padding: 10px 0;
         perspective: 600px;
 
         .card{
