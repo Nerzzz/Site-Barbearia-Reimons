@@ -180,11 +180,17 @@
                 background-color: #fff;
                 justify-content: center;
                 width: fit-content;
+                transition: transform 150ms ease-in;
 
                 svg{
                     width: 20px;
                     height: 20px;
                 }
+            }
+
+            button:hover,
+            button:focus-visible{
+                transform: scale(0.95);
             }
         }
     }

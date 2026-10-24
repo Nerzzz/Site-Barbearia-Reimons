@@ -3,6 +3,14 @@
         {
             "source": "/inicio",
             "destination": "/index.html"
+        },
+        {
+            "source": "/agendamento",
+            "destination": "/agendamento.html"
+        },
+        {
+            "source": "/404",
+            "destination": "/404.html"
         }
     ]
 }

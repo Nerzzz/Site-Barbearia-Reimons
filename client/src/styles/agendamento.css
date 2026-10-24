@@ -1,40 +1,134 @@
-body{
-    min-height: 100%;
+#window-form{
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000080;
+
+    section{
+        background-color: var(--color-white);
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        padding: 40px;
+        border-radius: 5px;
+        position: relative;
+        width: clamp(300px, 50vw, 600px);
+
+        #btnSairWindow{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: none;
+            color: var(--color-light-gray);
+            font-size: 14pt;
+            padding: 0;
+            margin: 0;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            button[type="submit"]{
+                margin-top: 40px;
+            }
+        }
+    }
 }
 
-#agendarServicos{ 
-    flex-direction: row;
-    align-items: center;
-    gap: 30px;
+#agendamento{
+    display: flex;
+    flex-direction: column;
+    margin-top: 160px;
+}
+
+#agendamento .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 80vw;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.grid-servicos {
+    display: grid;
+    grid-template-columns: repeat(3, 400px); /* espaçamento do fio de cards */
+    grid-auto-rows: 400px;
+    gap: 20px;
+    perspective: 600px;
+}
+
+.selected{
+    border: 1px solid var(--color-accent);
+    z-index: 500;
+    transform: scale(1.02) rotate3d(0, -60, 10, 4deg);
+    box-shadow: 20px 0 30px #4f4f4f40;
     
-    .content{
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 40%;
+    img{
+        opacity: 1 !important;
+    }
+}
 
-        h2{
-            margin-bottom: 30px;
-        }
+.btn {
+    background: var(--linear-grad-blue);
+    color: white;
+    font-size: 14pt;
+}
 
-        p{
-            margin-top: 10px;
-        }
+#btnFinalizarServico{
+    display: none;
+}
+
+.show{
+    display: flex !important;
+}
+
+.servicos-card {
+    background-color: #474747;
+    border-radius: 5px;
+    overflow: hidden;
+    filter: var(--shadow-light-gray);
+    position: relative;
+    margin: 0;
+    padding: 0;
+    outline: none;
+
+    img{
+        object-fit: contain;
+        object-position: 0px;
+        width: 150%;
+        height: 150%;
+        opacity: 0.5;
     }
 
-    .image-box{
-        flex: 1 1 55%;
+    .card-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-white);
+        padding: 10px;
         display: flex;
-        justify-content: center;
-        max-width: 1fr;
-        max-height: 450px;
-        perspective: 600px;
-
-        img{
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 5px;
-            object-fit: cover;
-        }
+        justify-content: space-between;
+        align-items: center;
     }
-    
+
+    .nome {
+        font-size: 16pt;
+        font-weight: 500;
+    }
+
+    .preco {
+        font-size: 12pt;
+        color: var(--color-money);
+        font-weight: 400;
+    }
 }

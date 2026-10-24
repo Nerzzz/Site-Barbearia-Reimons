@@ -14,12 +14,16 @@
 
     --color-white: #f6f6f6;
     --color-accent: #1e53a3;
+    --color-red: #df2100;
 
     --color-gray: #4c4c55;
     --color-light-gray: #65626d;
     --color-light-gray-50: #9f97b3;
 
-    --linear-grad-blue: linear-gradient(#1e53a3, #143c77);
+    --color-money: rgb(7, 180, 36);
+
+    --linear-grad-blue: linear-gradient(to right,#1e53a3, #143c77);
+    --linear-grad-red: linear-gradient(to right,#912411, #df2100);
 
     --shadow-light-gray: drop-shadow(0 0 20px #9797a170);
 }
@@ -63,18 +67,47 @@ h4{
     color: var(--color-title);
 }
 
-p, a, span{
+option {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 12pt;
+    line-height: 12pt;
+    color: var(--color-title);
+}
+
+p, a, span, label {
     color: var(--color-corpo);
     font-family: var(--font-corpo);
     font-size: 12pt;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    label{
+        font-size: 10pt;
+        font-weight: 400;
+        color: var(--color-light-gray);
+    }
+}
+
+input, select, textarea{
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px var(--color-light-gray);
+    font-size: 12pt;
+    font-family: var(--font-corpo);
 }
 
 *{
     scroll-behavior: smooth;
 }
 
-button{
-    padding: 12px;
+button, .btn{
+    display: flex;
+    padding: 12px 20px;
     border-radius: 5px;
     font-family: var(--font-corpo);
     border: none;
@@ -82,6 +115,11 @@ button{
     font-weight: 500;
     cursor: pointer;
     align-items: center;
+    background-color: var(--color-white);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
 }
 
 html{
@@ -92,7 +130,7 @@ html{
 body{
     display: flex;
     flex-direction: column;
-    background-color: #f8f8f8;
+    background-color: #f4f3f7;
     overflow-x: clip;
 }
 
@@ -118,14 +156,20 @@ header{
     nav{
         display: flex;
         gap: 30px;
+        width: 1fr;
     }
-
+    
     a{
         display: flex;
         align-items: center;
         color: var(--color-white);
         text-decoration: none;
         font-weight: 500;
+        transition: transform 150ms ease-in;
+    }
+
+    a:hover{
+        transform: translateY(-3px);
     }
 }
 
@@ -183,6 +227,19 @@ footer{
 
                 ul li{
                     list-style: none;
+                }
+            }
+
+            .social{
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                margin-top: 20px;
+
+                a{
+                    color: var(--color-light-gray);
+                    width: 40px;
+                    height: 40px;
                 }
             }
         }
