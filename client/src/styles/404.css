@@ -5,6 +5,15 @@ main{
 
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+#logo{
+    position: absolute;
+    max-width: 1fr;
+    max-height: 8vh;
+    top: 30px;
+    left: 20px;
 }
 
 section{
@@ -15,8 +24,8 @@ section{
     width: 100%;
 
     img{
-        max-width: 800px;
-        width: 100%;
+        max-width: 80dvw;
+        max-height: 50dvh;
     }
 
     .content{
@@ -39,7 +48,8 @@ section{
         button{
             margin-top: 20px;
             width: 100%;
-            background-color: var(--color-money);
+            border: solid 1px var(--color-light-gray-50);
+            background-color: #fff;
         }
     }
 }

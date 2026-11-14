@@ -24,7 +24,7 @@ function selecionarServico(servico) {
 
     servicoSelecionado = servico;
 
-    console.log("Serviço selecionado:", servicoSelecionado);
+    //console.log("Serviço selecionado:", servicoSelecionado);
 }
 
 function callForm() {
@@ -35,6 +35,7 @@ function callForm() {
         windowForm.style.display = "flex";
         return;
     }
+    
     isFormOpen = false;
     windowForm.style.display = "none";
 }
