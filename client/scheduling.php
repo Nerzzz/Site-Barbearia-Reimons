@@ -44,6 +44,9 @@
                             </div>
                             <div class="barbers">
                                 <h4>Escolha um profissional</h4>
+                                <?php
+                                    require_once("./src/php/bdconn.php");
+                                ?>
                                 <div class="content" onclick="" id="">
                                     <button class="card">
                                         <img src="public/images/logo/light.svg" alt="Imagem do barbeiro">

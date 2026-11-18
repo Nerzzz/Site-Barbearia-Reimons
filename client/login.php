@@ -1,4 +1,6 @@
 <?php
+    require_once './src/php/bdconn.php';
+
     if(!isset($_POST['login']) || !isset($_POST['password'])) {
         echo "Login ou senha não informados";
         echo "<button onclick='history.go(-1)'>Voltar</button>";
@@ -7,8 +9,7 @@
 
     $login = trim($_POST['login']);
     $password = $_POST['password'];
-
-    require_once './src/php/bdconn.php';
+    
 
     $sql = "SELECT * FROM barbeiros WHERE email = ? AND senha = ?";
     
@@ -20,9 +21,6 @@
     mysqli_stmt_bind_param($stmt, "ss", $login, $password);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-
-    var_dump($login, $password, mysqli_num_rows($result));
-    exit;
 
     if (mysqli_num_rows($result) > 0) {
         header("Location: ./src/php/dashboard.php");
