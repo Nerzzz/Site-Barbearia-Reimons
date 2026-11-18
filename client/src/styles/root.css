@@ -367,6 +367,21 @@ footer{
     rotate: -25deg;
 }
 
+.btn.confirm{
+    background-color: var(--color-accent);
+    border-radius: 10px;
+    border: none;
+    color: var(--color-white);
+}
+
+.btn.cancel{
+    background-color: var(--color-white);
+    border-radius: 10px;
+    border: 1px solid var(--color-light-gray-50);
+    color: var(--color-black);
+    width: fit-content;
+}
+
 .input{
     display: flex;
     flex-direction: row;
