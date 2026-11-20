@@ -124,15 +124,13 @@ form.addEventListener("submit", async (event) => {
     document.getElementById("horario").value = horario;
 
     showAlert("Agendamento realizado com sucesso!", true);
-
-    event.preventDefault();
 });
 
 document.querySelectorAll(".card-barbeiro").forEach((card) => {
     card.addEventListener("click", () => {
         barbeiro = card.dataset.id;
         
-        document.getElementById(barbeiro).classList.add("selected");
+        card.classList.add("selected");
         document.querySelectorAll(".card-barbeiro").forEach((card) => {
             if(card.dataset.id != barbeiro){
                 card.classList.remove("selected");
@@ -151,7 +149,7 @@ document.querySelectorAll(".card-servico").forEach((card) => {
     card.addEventListener("click", () => {
         servico = card.dataset.id;
         
-        document.getElementById(servico).classList.add("selected");
+        card.classList.add("selected");
         document.querySelectorAll(".card-servico").forEach((card) => {
             if(card.dataset.id != servico){
                 card.classList.remove("selected");
