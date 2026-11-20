@@ -1,3 +1,7 @@
+<?php
+    require_once("./src/php/bdconn.php");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -15,22 +19,28 @@
 
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
-        <script defer src="./src/script/scheduling.js"></script>
+
+        <script defer type="module" src="./src/script/scheduling.js"></script>
     </head>
     <body>
         <main>
             <section>
                 <h2>Agendamento de Horário</h2>
-                <form id="agendamento" action="">
+                <form id="agendamento" action="registerSchedule.php" method="POST">
+                    <input type="hidden" name="barbeiro_id" id="barbeiro_id">
+                    <input type="hidden" name="servico_id" id="servico_id">
+                    <input type="hidden" name="data" id="data">
+                    <input type="hidden" name="horario" id="horario">
+
                     <div class="form">
                         <div class="section-1">
                             <div class="inputs">
                                 <div class="input">
-                                    <input type="text" name="nome" id="nome" placeholder="John Doe">
+                                    <input type="text" name="nome" id="nome" placeholder="John Doe" maxlength="50">
                                     <label>Nome completo</label>
                                 </div>
                                 <div class="input">
-                                    <input type="tel" name="telefone" id="telefone" placeholder="xx xxxxx-xxxx">
+                                    <input type="tel" name="telefone" id="telefone" placeholder="xx xxxxx-xxxx" maxlength="11">
                                     <label>Telefone</label>
                                 </div>
                                 <div class="input">
@@ -38,46 +48,34 @@
                                     <label>Data de nascimento</label>
                                 </div>
                                 <div class="input">
-                                    <textarea name="observacoes" id="observacoes" placeholder="Se for necessário mais algum detelhe, escreva aqui"></textarea>
+                                    <textarea name="observacoes" id="observacoes" placeholder="Se for necessário mais algum detelhe, escreva aqui" maxlength="128"></textarea>
                                     <label>Observações</label>
                                 </div>
                             </div>
                             <div class="barbers">
                                 <h4>Escolha um profissional</h4>
-                                <?php
-                                    require_once("./src/php/bdconn.php");
-                                ?>
                                 <div class="content" onclick="" id="">
-                                    <button class="card">
-                                        <img src="public/images/logo/light.svg" alt="Imagem do barbeiro">
-                                        <span>Gustavo</span>
+                                    <?php
+                                        $sql = "SELECT id, nome, email, img_url FROM barbeiros WHERE ativo = 1";
+                                        $result = mysqli_query($conn, $sql);
+                                        
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo '<button type="button" class="card card-barbeiro" data-id="' . $row['id'] . '" id="' . $row['id'] . '">';
+                                                
+                                                if($row['img_url']) {
+                                                    echo '<img src="' . $row['img_url'] . '" alt="Foto do barbeiro">';
+                                                } else {
+                                                    echo '<img src="./public/images/logo/light.svg" alt="Foto do barbeiro">';
+                                                }
 
-                                    </button>
-
-                                    <button class="card" onclick="" id="">
-                                        <img src="public/images/logo/light.svg" alt="Imagem do barbeiro">
-                                        <span>Matheus</span>
-                                    </button>
-
-                                    <button class="card" onclick="" id="">
-                                        <img src="public/images/logo/light.svg" alt="Imagem do barbeiro">
-                                        <span>Otávio</span>
-                                    </button>
-
-                                    <button class="card" onclick="" id="">
-                                        <img src="public/images/logo/light.svg" alt="Imagem do barbeiro">
-                                        <span>Paulo</span>
-                                    </button>
-
-                                    <button class="card" onclick="" id="">
-                                        <img src="public/images/logo/light.svg" alt="Imagem do barbeiro">
-                                        <span>Ramon</span>
-                                    </button>
-
-                                    <button class="card" onclick="" id="">
-                                        <img src="public/images/logo/light.svg" alt="Imagem do barbeiro">
-                                        <span>Yago</span>
-                                    </button>
+                                                echo '<span>' . $row['nome'] . '</span>';
+                                                echo '</button>';
+                                            }
+                                        } else {
+                                            echo "<span class='no_results'>Nenhum barbeiro encontrado</span>";
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +83,30 @@
                             <h4>Selecione um serviço</h4>
                             <span class="observation">Imagens ilustrativas, não representam o serviço real</span>
                             <div class="content">
+
+                                <?php
+                                    $sql = "SELECT id, nome, valor, img_url FROM servicos WHERE ativo = 1";
+                                    $result = mysqli_query($conn, $sql);
+                                    
+                                    if (mysqli_num_rows($result) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo '<button type="button" class="card card-servico" data-id="' . $row['id'] . '" id="' . $row['id'] . '">';
+                                            
+                                            if($row['img_url']) {
+                                                echo '<img src="' . $row['img_url'] . '" alt="Imagem do serviço">';
+                                            } else {
+                                                echo '<img src="./public/images/logo/light.svg" alt="Imagem do serviço">';
+                                            }
+
+                                            echo '<span>' . $row['nome'] . '</span>';
+                                            echo '<span class="valor">R$ ' . number_format($row['valor'], 2, ',', '.') . '</span>';
+                                            echo '</button>';
+                                        }
+                                    } else {
+                                        echo "<span class='no_results'>Nenhum serviço encontrado</span>";
+                                    }
+                                ?>
+
                                 <button class="card" onclick="" id="">
                                     <img src="./public/images/barba.webp" alt="Corte de barba">
                                     <span>Corte barba</span>
@@ -148,18 +170,7 @@
                                 </div>
                                 <div id="horarios">
                                     <span>Selecione um horário</span>
-                                    <div class="container">
-                                        <button class="selected">7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
-                                        <button>7:00</button>
+                                    <div id="hour_container" class="container">
                                     </div>
                                 </div>
                             </div>

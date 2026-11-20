@@ -1,8 +1,8 @@
 <?php
-    $servername = "sql200.byethost7.com";
-    $dbusername = "b7_43446412";
-    $dbpssw = "Ep_27108080";
-    $dbname = "b7_43446412_barbearia_reimons";
+    $servername = "localhost";
+    $dbusername = "barbearia";
+    $dbpssw = "barbearia";
+    $dbname = "barbearia_reimons";
 
     $conn = new mysqli($servername, $dbusername, $dbpssw, $dbname);
 

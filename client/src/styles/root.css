@@ -16,13 +16,15 @@
 
     --color-white: #fafafa;
     --color-accent: #1e53a3;
-    --color-red: #df2100;
 
     --color-gray: #4c4c55;
     --color-light-gray: #65626d;
     --color-light-gray-50: #b6afc7;
 
-    --color-green: rgb(7, 180, 36);
+    --color-green: #07b424;
+    --color-bg-green: #e5f1e7;
+    --color-red: #df2100;
+    --color-bg-red: #f1eae8;
 
     --linear-grad-blue: linear-gradient(to right,#1e53a3, #143c77);
     --linear-grad-red: linear-gradient(to right,#912411, #df2100);
@@ -115,13 +117,16 @@ button, .btn{
     border: none;
     outline: none;
     font-weight: 500;
-    cursor: pointer;
     align-items: center;
     background-color: var(--color-white);
     justify-content: center;
     align-items: center;
     gap: 10px;
     text-decoration: none;
+}
+
+button, a, .btn, input[type="submit"]{
+    cursor: pointer;
 }
 
 *{
@@ -401,6 +406,7 @@ footer{
 
     textarea{
         min-height: 100px;
+        resize: vertical;
     }
 
     label{
@@ -422,7 +428,7 @@ footer{
     }
 
     input:focus, textarea:focus{
-                border-color: var(--color-accent);
+        border-color: var(--color-accent);
     }
 
     input:focus::placeholder, textarea:focus::placeholder{
@@ -431,8 +437,13 @@ footer{
     input:not(:focus)::placeholder, textarea:not(:focus)::placeholder{
         color: transparent;
     }
-}
 
+    input.error, textarea.error,
+    input.error:focus, textarea.error:focus{
+        border-color: var(--color-red) !important;
+    }
+
+}
 .flatpickr-calendar {
     box-shadow: none;
     border-radius: 10px;
@@ -465,3 +476,34 @@ footer{
     border-color: var(--color-light-gray); 
 }
 .flatpickr-day.flatpickr-disabled { color: #ccc; }
+
+.alert{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 20px;
+    border: solid 1px var(--color-light-gray-50);
+    border-radius: 10px 10px 0 0;
+    top: 20px;
+    right: 20px;
+    background-color: var(--color-white);
+    animation: alternate showAlert 300ms ease-out;
+
+    span{
+        font-weight: 600;
+        font-size: 14pt;
+    }
+}
+
+.alert.error{
+    border-bottom: solid 3px var(--color-red);
+}
+
+.alert.success{
+    border-bottom: solid 3px var(--color-green);
+}
+
+@keyframes showAlert {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

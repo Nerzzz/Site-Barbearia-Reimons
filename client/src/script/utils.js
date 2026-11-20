@@ -1,4 +1,4 @@
-function setHeaderTextColor(){
+export function setHeaderTextColor(){
     const header = document.querySelector("#header");
     const logo = document.querySelector("#header-logo");
     const hero = document.querySelector("#hero");
@@ -27,7 +27,7 @@ function setHeaderTextColor(){
 
 setHeaderTextColor();
 
-function loadMap(){
+export function loadMap(){
     const lat = -22.7505776;
     const lon = -47.6529226;
 
@@ -47,4 +47,22 @@ function loadMap(){
     });
 }
 
-loadMap();
+export function showAlert(message, status = false){
+    const alertContainer = document.createElement("div");
+    alertContainer.classList.add("alert", `${status ? "success" : "error"}`);
+    alertContainer.innerHTML += `<span>${status ? "Sucesso" : "Erro"}</span>`;
+    alertContainer.innerHTML += `<p>${message}</p>`;
+
+    document.body.appendChild(alertContainer);
+
+    setTimeout(() => {
+        document.body.removeChild(alertContainer);
+    }, 3000);
+}
+
+export function scrollToElement(query, offset = 100){
+    const elemento = document.querySelector(query);
+    const y = elemento.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({top: y, behavior: "smooth", block: "center" });
+}

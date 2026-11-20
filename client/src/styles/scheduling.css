@@ -142,7 +142,7 @@
         }
 
         .horarios{
-            display: flex;
+            display: none;
             flex-direction: column;
             gap: 20px;
 
@@ -191,6 +191,18 @@
                             background-color: var(--color-accent);
                             color: var(--color-white);
                             opacity: 1;
+                        }
+
+                        button:disabled{
+                            cursor: not-allowed;
+                        }
+
+                        button:disabled.ocupied{
+                            opacity: 1;
+                            pointer-events: none;
+                            color: var(--color-light-gray-50);
+                            border: solid 1px var(--color-red);
+                            cursor: not-allowed !important;
                         }
                     }
                 }
