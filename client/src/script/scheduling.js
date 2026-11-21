@@ -124,6 +124,35 @@ form.addEventListener("submit", async (event) => {
     document.getElementById("horario").value = horario;
 
     showAlert("Agendamento realizado com sucesso!", true);
+
+    event.preventDefault();
+
+    // MUDANÇAS: Recupera as informações de 'registerSchedule.php' para baixar o pdf do agendamento
+
+    try {
+        const resp = await fetch(`./registerSchedule.php?nome=${nome}&telefone=${telefone}&dataNasc=${dataNasc}&barbeiro_id=${barbeiro}&servico_id=${servico}&data=${data}&horario=${horario}`, {
+            method: "POST",
+            body: new FormData(form),
+        });
+        if (!resp.ok) throw new Error();
+
+        const blob = await resp.blob();
+
+        // dispara o download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "agendamento.pdf";
+        a.click();
+        URL.revokeObjectURL(url);
+
+        // volta para o index depois de um instante
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 2000);
+    } catch {
+        showAlert("Erro ao enviar. Tente novamente.", "error");
+    }
 });
 
 document.querySelectorAll(".card-barbeiro").forEach((card) => {

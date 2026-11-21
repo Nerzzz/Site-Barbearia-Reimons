@@ -2,5 +2,9 @@ RewriteEngine On
 
 RewriteRule ^$ index.html [L]
 RewriteRule ^agendamento/?$ scheduling.php
+RewriteRule ^login/?$ login.html
+RewriteRule ^dashboardBarbeiros/?$ dashboardBarbeiros.php
+RewriteRule ^dashboard/?$ dashboard.php
+RewriteRule ^servicos/?$ servicos.php
 
 ErrorDocument 404 /404.html

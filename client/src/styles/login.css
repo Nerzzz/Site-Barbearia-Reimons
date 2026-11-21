@@ -1,0 +1,257 @@
+/*
+ * Estilos da tela de login administrativo (login.html).
+ * ALTERADO: este CSS estava dentro de um <style> no login.html e foi movido
+ * seguindo o padrão das outras páginas (root.css + CSS da página).
+ */
+
+body { margin: 0; background: #090e16; }
+
+.admin-login,
+.admin-login *,
+.admin-login *::before,
+.admin-login *::after {
+    box-sizing: border-box;
+}
+
+.admin-login {
+    --font-title: system-ui, sans-serif;
+    --font-corpo: var(--font-title);
+    --login-text: var(--color-title, #000);
+    background: #090e16;
+    color: var(--login-text);
+    font-family: var(--font-corpo);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.login-page {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    min-block-size: 100vh;
+    min-block-size: 100svh;
+    padding: clamp(1.25rem, 5vh, 3.5rem) 1.125rem;
+}
+
+.login-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 61% 36%, #234467 0%, #101f32 31%, #090e16 72%);
+}
+
+.login-backdrop::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 65%;
+    /* ALTERADO: foto de fundo tirada do base64 (540 KB) e salva como WebP (42 KB),
+       agora dentro de public/images/barbearia/ junto com as outras fotos da barbearia.
+       O caminho é relativo a ESTE arquivo (src/styles/), por isso o "../../". */
+    background: center 48% / cover no-repeat url("../../public/images/barbearia/cadeiras.webp");
+    opacity: .34;
+    filter: grayscale(1) brightness(.65);
+    mask-image: linear-gradient(90deg, #000 32%, transparent 98%);
+}
+
+.login-backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 43%, transparent 30%, #060b1366 73%, #060b13b3),
+        linear-gradient(0deg, #070d17a8, transparent 30%, transparent 74%, #070d1759);
+}
+
+.login-card {
+    color-scheme: light;
+    display: grid;
+    gap: 1.875rem;
+    width: min(100%, 28rem);
+    margin: 0;
+    padding: clamp(1.625rem, 4vw, 2.75rem);
+    border: 1px solid #e3e9f1;
+    border-radius: 1.375rem;
+    background: #fff;
+    box-shadow: 0 24px 76px #03071080;
+}
+
+.login-brand {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+    text-align: center;
+}
+
+.login-brand img {
+    display: block;
+    width: 7rem;
+    height: auto;
+}
+
+.login-brand h1 {
+    max-width: none;
+    margin: 0;
+    color: var(--login-text);
+    font-size: clamp(1.375rem, 4.5vw, 1.875rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.035em;
+}
+
+.login-form {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.login-field {
+    display: grid;
+    gap: .45rem;
+    min-width: 0;
+}
+
+.login-field label {
+    color: var(--login-text);
+    font-size: .875rem;
+    font-weight: 500;
+}
+
+.login-field input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 3.125rem;
+    padding: .75rem .875rem;
+    border: 1px solid #8294ab;
+    border-radius: .625rem;
+    background: #f6f8fb;
+    color: var(--login-text);
+    font: inherit;
+    transition: border-color .18s ease;
+}
+
+.login-field input::placeholder {
+    color: var(--login-text);
+    opacity: .62;
+}
+
+.login-field input:hover {
+    border-color: #53739b;
+}
+
+.login-password {
+    position: relative;
+    min-width: 0;
+}
+
+.login-password--with-toggle input {
+    padding-inline-end: 6rem;
+}
+
+.login-toggle {
+    position: absolute;
+    inset: 3px 3px 3px auto;
+    min-width: 5.25rem;
+    padding: 0 .625rem;
+    border: 0;
+    border-radius: .45rem;
+    background: transparent;
+    color: var(--login-text);
+    font: inherit;
+    font-size: .875rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.login-toggle[hidden] {
+    display: none;
+}
+
+.login-toggle:hover {
+    background: #93bdff24;
+    color: var(--login-text);
+}
+
+.login-submit {
+    min-height: 3.125rem;
+    margin-top: .375rem;
+    padding: .7rem 1rem;
+    border: 1px solid var(--color-accent, #1e53a3);
+    border-radius: .625rem;
+    background: var(--color-accent, #1e53a3);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .18s ease;
+}
+
+.login-submit:hover {
+    background: #184789;
+}
+
+.login-back {
+    display: grid;
+    place-items: center;
+    justify-self: center;
+    min-height: 2.75rem;
+    margin-top: -.25rem;
+    padding: 0 .75rem;
+    border-radius: .375rem;
+    color: var(--login-text);
+    font-size: .875rem;
+    text-underline-offset: .25em;
+    text-decoration-color: #566579;
+}
+
+.login-back:hover {
+    color: var(--login-text);
+    text-decoration-color: currentColor;
+}
+
+.login-form :is(input, button, a):focus-visible {
+    outline: 2px solid var(--color-accent, #1e53a3);
+    outline-offset: 2px;
+}
+
+@media (max-width: 35rem) {
+    .login-backdrop::before {
+        width: 100%;
+        opacity: .24;
+        mask-image: linear-gradient(135deg, #000, transparent 78%);
+    }
+
+    .login-card {
+        border-radius: 1.125rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-form :is(input, button) {
+        transition: none;
+    }
+}
+
+.login-back {
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.login-message {
+    margin: -.5rem 0 0;
+    color: var(--login-text);
+    text-align: center;
+    font-size: .875rem;
+}
+
+/* ALTERADO: cor para as mensagens de erro que voltam do login.php */
+.login-message.erro {
+    color: #c62828;
+    font-weight: 500;
+}

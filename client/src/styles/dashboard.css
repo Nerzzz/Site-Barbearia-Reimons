@@ -1,0 +1,323 @@
+/*
+ * Estilos do dashboard (gerenciar funcionários).
+ * Complementa root.css / scheduling.css, mas monta a lista sozinho:
+ * as regras de .card do scheduling.css só valem dentro do formulário de agendamento.
+ *
+ * Fonte: usa a variável --font-corpo do root.css; se ela não existir, usa Poppins.
+ */
+
+main section {
+    font-family: var(--font-corpo, 'Poppins', sans-serif);
+}
+
+/* Botões, links e campos não herdam a fonte sozinhos no navegador */
+main section :is(button, .btn, input, select, small) {
+    font-family: inherit;
+}
+
+/* ---------------- Topo ---------------- */
+.topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.topo .usuario {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ---------------- Mensagens ---------------- */
+.flash {
+    margin: 1rem 0;
+    padding: .75rem 1rem;
+    border: 1px solid;
+    border-radius: .5rem;
+}
+
+.flash ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.flash.sucesso {
+    color: #2e9e4f;
+    background: rgba(46, 158, 79, .1);
+}
+
+.flash.erro {
+    color: #d64545;
+    background: rgba(214, 69, 69, .1);
+}
+
+/* ---------------- Lista de funcionários ---------------- */
+section .barbers .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+section .barbers .content .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    min-width: 0;
+    padding: 1.5rem 1rem 1.25rem;
+    text-align: center;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: .875rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+
+section .barbers .content .card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .1);
+    transform: translateY(-2px);
+}
+
+/* Foto redonda de tamanho fixo */
+section .barbers .content .card img {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Sem foto: o logo padrão é branco, então ganha um fundo escuro */
+section .barbers .content .card img[src*="images/logo/"],
+#foto-preview[src*="images/logo/"] {
+    object-fit: contain;
+    padding: 18px;
+    background: #1c1c1c;
+}
+
+.card > span {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.card .email {
+    max-width: 100%;
+    font-size: .8rem;
+    opacity: .7;
+    overflow-wrap: anywhere;
+}
+
+section .barbers .content .card.inativo {
+    opacity: .55;
+}
+
+section .barbers .content .card.editando {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .25rem;
+}
+
+.card .tag {
+    padding: .1rem .55rem;
+    font-size: .7rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    opacity: .8;
+}
+
+.card .tag.nivel-2 {
+    font-weight: 700;
+    opacity: 1;
+}
+
+/* Botões Editar / Excluir */
+.card .acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: .5rem;
+}
+
+.card .acoes form {
+    margin: 0;
+}
+
+.card .acoes .btn {
+    display: inline-block;
+    padding: .4rem .9rem;
+    font-size: .85rem;
+    line-height: 1.2;
+    color: inherit;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: .45rem;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.card .acoes .btn:hover {
+    color: #fff;
+    background: #1c1c1c;
+    border-color: #1c1c1c;
+}
+
+.card .acoes .btn.excluir {
+    color: #d64545;
+    border-color: #d64545;
+}
+
+.card .acoes .btn.excluir:hover {
+    color: #fff;
+    background: #d64545;
+}
+
+/* ---------------- Paginação ---------------- */
+.paginacao {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: 1.5rem;
+}
+
+.paginacao a,
+.paginacao span {
+    min-width: 2.25rem;
+    padding: .4rem .6rem;
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid currentColor;
+    border-radius: .4rem;
+    opacity: .7;
+}
+
+.paginacao a:hover {
+    opacity: 1;
+}
+
+.paginacao .atual {
+    font-weight: 700;
+    opacity: 1;
+    outline: 2px solid currentColor;
+}
+
+/* ---------------- Formulário ---------------- */
+#form-funcionario {
+    margin-top: 2.5rem;
+}
+
+.input select {
+    width: 100%;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+}
+
+.input select option {
+    color: #000;
+}
+
+/* Foto de perfil */
+.foto-campo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+}
+
+.foto-campo #foto-preview {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+}
+
+.foto-campo .input {
+    width: 100%;
+}
+
+.foto-campo input[type="file"] {
+    width: 100%;
+    color: inherit;
+    cursor: pointer;
+}
+
+.foto-campo .remover-foto {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .85rem;
+    cursor: pointer;
+}
+
+/* ---------------- Menu do painel (Agendamentos / Funcionários) ---------------- */
+.menu-painel {
+    display: flex;
+    gap: .25rem;
+    margin-right: .5rem;
+}
+
+.menu-painel a {
+    padding: .4rem .8rem;
+    color: inherit;
+    text-decoration: none;
+    border-radius: .45rem;
+    opacity: .7;
+}
+
+.menu-painel a:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, .05);
+}
+
+.menu-painel a.ativo {
+    font-weight: 600;
+    opacity: 1;
+    background: rgba(0, 0, 0, .07);
+}
+
+/* ---------------- Serviços (servicos.php) ---------------- */
+/* Imagem retangular em vez da foto redonda dos funcionários */
+section .servicos-lista .content .card img {
+    box-sizing: border-box; /* a largura de 100% já inclui o espaçamento interno */
+    width: 100%;
+    height: 140px;
+    border-radius: .6rem;
+}
+
+section .servicos-lista .content .card img[src*="images/logo/"] {
+    padding: 22px 40px;
+}
+
+.card .preco {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.foto-campo #foto-preview.foto-servico {
+    box-sizing: border-box;
+    width: 220px;
+    height: 140px;
+    border-radius: .6rem;
+}
+
+form{
+    .section-1 .inputs{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+}

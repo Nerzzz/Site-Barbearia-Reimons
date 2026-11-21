@@ -1,0 +1,385 @@
+/*
+ * Estilos da página de agendamentos.
+ * Usa junto com root.css, scheduling.css e dashboard.css (topo, mensagens, botões, paginação).
+ */
+
+/* ---------------- Filtros ---------------- */
+.filtros {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0 .75rem;
+}
+
+.abas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+    padding: .25rem;
+    background: rgba(0, 0, 0, .05);
+    border-radius: .6rem;
+}
+
+.abas a {
+    padding: .45rem .9rem;
+    color: inherit;
+    text-decoration: none;
+    border-radius: .45rem;
+    opacity: .7;
+}
+
+.abas a:hover {
+    opacity: 1;
+}
+
+.abas a.ativo {
+    font-weight: 600;
+    opacity: 1;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+}
+
+.filtro-barbeiro {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.filtro-barbeiro select {
+    padding: .45rem .6rem;
+    font: inherit;
+    color: inherit;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .45rem;
+}
+
+.vazio {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* ---------------- Tabela ---------------- */
+.agenda {
+    width: 100%;
+    margin-top: .5rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: .875rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+    overflow: hidden;
+}
+
+.agenda th,
+.agenda td {
+    padding: .75rem .9rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(0, 0, 0, .06);
+}
+
+.agenda th {
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    opacity: .7;
+    background: rgba(0, 0, 0, .03);
+}
+
+.agenda tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.agenda tbody tr:hover {
+    background: rgba(0, 0, 0, .02);
+}
+
+.agenda td a {
+    color: inherit;
+}
+
+.agenda .obs {
+    max-width: 16rem;
+    font-size: .85rem;
+    opacity: .8;
+    overflow-wrap: anywhere;
+}
+
+.agenda tr.cancelado td {
+    opacity: .5;
+}
+
+.agenda tr.cancelado td:not(.acoes) {
+    text-decoration: line-through;
+}
+
+.agenda tr.editando {
+    background: rgba(30, 83, 163, .07);
+}
+
+.agenda .acoes {
+    white-space: nowrap;
+}
+
+.agenda .acoes form {
+    display: inline;
+    margin: 0;
+}
+
+.agenda .acoes .btn {
+    display: inline-block;
+    padding: .35rem .75rem;
+    font-size: .85rem;
+    line-height: 1.2;
+    color: inherit;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: .45rem;
+    cursor: pointer;
+}
+
+.agenda .acoes .btn:hover {
+    color: #fff;
+    background: #1c1c1c;
+    border-color: #1c1c1c;
+}
+
+.agenda .acoes .btn.excluir {
+    color: #d64545;
+    border-color: #d64545;
+}
+
+.agenda .acoes .btn.excluir:hover {
+    color: #fff;
+    background: #d64545;
+}
+
+.agenda .status {
+    font-size: .8rem;
+    opacity: .7;
+}
+
+/* ---------------- Remarcar ---------------- */
+.remarcar {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: #fff;
+    border: 2px solid rgba(30, 83, 163, .35);
+    border-radius: .875rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+}
+
+.remarcar p {
+    margin: .5rem 0 1rem;
+    line-height: 1.6;
+}
+
+.remarcar-dia {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+
+.remarcar-dia input[type="date"] {
+    padding: .45rem .6rem;
+    font: inherit;
+    color: inherit;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .45rem;
+}
+
+.remarcar .rotulo {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.horarios-grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+    gap: .5rem;
+    margin-bottom: 1.25rem;
+}
+
+.horario {
+    position: relative;
+    cursor: pointer;
+}
+
+.horario input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.horario span {
+    display: block;
+    padding: .5rem 0;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .45rem;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+.horario:hover span {
+    border-color: #1c1c1c;
+}
+
+.horario input:checked + span {
+    color: #fff;
+    font-weight: 600;
+    background: #1c1c1c;
+    border-color: #1c1c1c;
+}
+
+.horario input:focus-visible + span {
+    outline: 2px solid #1e53a3;
+    outline-offset: 2px;
+}
+
+.horario.ocupado,
+.horario.atual {
+    cursor: not-allowed;
+}
+
+.horario.ocupado span {
+    opacity: .35;
+    text-decoration: line-through;
+}
+
+.horario.atual span {
+    border-style: dashed;
+    opacity: .6;
+}
+
+/* Botões do painel de remarcar */
+.remarcar .form-action {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+}
+
+.remarcar .form-action input[type="submit"],
+.remarcar .form-action .btn {
+    padding: .6rem 1.1rem;
+    font: inherit;
+    font-size: .9rem;
+    line-height: 1.2;
+    text-decoration: none;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.remarcar .form-action input[type="submit"] {
+    color: #fff;
+    font-weight: 600;
+    background: #1c1c1c;
+    border: 1px solid #1c1c1c;
+}
+
+.remarcar .form-action input[type="submit"]:hover {
+    background: #000;
+}
+
+.remarcar .form-action .btn {
+    color: inherit;
+    background: transparent;
+    border: 1px solid currentColor;
+}
+
+/* ---------------- Celular: cada linha da tabela vira um card ---------------- */
+@media (max-width: 800px) {
+    .agenda,
+    .agenda * {
+        box-sizing: border-box;
+    }
+
+    .agenda td > * {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .agenda,
+    .agenda tbody,
+    .agenda tr,
+    .agenda td {
+        display: block;
+        width: 100%;
+    }
+
+    .agenda {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .agenda thead {
+        display: none;
+    }
+
+    .agenda tr {
+        margin-bottom: 1rem;
+        padding: .5rem 0;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: .875rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+    }
+
+    .agenda td {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: .45rem 1rem;
+        text-align: right;
+        border-bottom: 0;
+    }
+
+    .agenda td::before {
+        content: attr(data-rotulo);
+        font-weight: 600;
+        text-align: left;
+        opacity: .6;
+    }
+
+    .agenda .obs {
+        max-width: none;
+    }
+
+    .agenda .acoes {
+        justify-content: flex-end;
+        gap: .5rem;
+        padding-top: .75rem;
+        white-space: normal;
+    }
+
+    .agenda .acoes::before {
+        content: none;
+    }
+}
+
+/* Valor do serviço embaixo do nome */
+.agenda .valor {
+    display: block;
+    font-size: .8rem;
+    opacity: .6;
+}
+
+@media (max-width: 800px) {
+    .agenda td[data-rotulo="Serviço"] {
+        align-items: center;
+    }
+
+    .agenda .valor {
+        display: inline;
+        margin-left: .35rem;
+    }
+}

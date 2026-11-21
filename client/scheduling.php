@@ -26,7 +26,7 @@
         <main>
             <section>
                 <h2>Agendamento de Horário</h2>
-                <form id="agendamento" action="registerSchedule.php" method="POST">
+                <form id="agendamento" method="POST">
                     <input type="hidden" name="barbeiro_id" id="barbeiro_id">
                     <input type="hidden" name="servico_id" id="servico_id">
                     <input type="hidden" name="data" id="data">
@@ -56,7 +56,7 @@
                                 <h4>Escolha um profissional</h4>
                                 <div class="content" onclick="" id="">
                                     <?php
-                                        $sql = "SELECT id, nome, email, img_url FROM barbeiros WHERE ativo = 1";
+                                        $sql = "SELECT id, nome, email, img_url FROM barbeiros WHERE ativo = 1 AND nivel != 3";
                                         $result = mysqli_query($conn, $sql);
                                         
                                         if (mysqli_num_rows($result) > 0) {
@@ -106,60 +106,6 @@
                                         echo "<span class='no_results'>Nenhum serviço encontrado</span>";
                                     }
                                 ?>
-
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/barba.webp" alt="Corte de barba">
-                                    <span>Corte barba</span>
-                                    <span class="valor">R$ 40,00</span>
-                                </button>
-
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/corte-cabelo.webp" alt="Corte de cabelo">
-                                    <span>Corte cabelo</span>
-                                    <span class="valor">R$ 40,00</span>
-                                </button>
-
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/homem_barbudo.webp" alt="Corte de barba e sobrancelha">
-                                    <span>Barba e sobrancelha</span>
-                                    <span class="valor">R$ 75,00</span>
-                                </button>
-
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/cortecabelobarba.webp" alt="Corte de cabelo e barba">
-                                    <span>Corte cabelo e barba</span>
-                                    <span class="valor">R$ 65,00</span>
-                                </button>
-
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/cabelosobrancelha.webp" alt="Corte de cabelo e sobrancelha">
-                                    <span>Cabelo e sobrancelha</span>
-                                    <span class="valor">R$ 50,00</span>
-                                </button>
-
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/depilacaoouvido.webp" alt="Depilação de ouvido com cera">
-                                    <span>Dep. Ouvido (Cera)</span>
-                                    <span class="valor">R$ 20,00</span>
-                                </button>
-
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/hidratacao.webp" alt="Hidratação capilar">
-                                    <span>Hidratação</span>
-                                    <span class="valor">R$ 35,00</span>
-                                </button>
-                                
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/pezinho.webp" alt="Pézinho">
-                                    <span>Pézinho</span>
-                                    <span class="valor">R$ 20,00</span>
-                                </button>
-                                
-                                <button class="card" onclick="" id="">
-                                    <img src="./public/images/sobrancelha.webp" alt="sobrancelha">
-                                    <span>Sobrancelha</span>
-                                    <span class="valor">R$ 20,00</span>
-                                </button>
                             </div>
                         </div>
                         <div class="horarios">
@@ -178,7 +124,7 @@
                     </div>
                     <div class="form-action">
                         <input type="submit" value="Confirmar agendamento">
-                        <a class="btn" href="./index.html">Cancelar</a>
+                        <a class="btn" href="./">Cancelar</a>
                     </div>
                 </form>
             </section>

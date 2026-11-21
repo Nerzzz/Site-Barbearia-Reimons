@@ -1,32 +1,114 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ALTERADO: removida a meta Content-Security-Policy da prévia. Ela tinha
+         form-action 'none' (impedia o envio do formulário) e img-src data:
+         (só aceitava imagens embutidas, não os arquivos da pasta public/). -->
+    <!-- ALTERADO: título igual ao das outras páginas administrativas -->
+    <title>Barbearia Reimons | ADM</title>
+    <!-- ALTERADO: favicon usando o logo que já existe no projeto.
+         O tipo correto de SVG é "image/svg+xml" (antes estava "image/svg"). -->
+    <link rel="icon" href="public/images/logo/dark.svg" type="image/svg+xml">
+    <!-- ALTERADO: caminho relativo (sem a "/" inicial), igual às outras páginas.
+         Com "/" o CSS quebra se o site ficar numa subpasta, ex.: localhost/barbearia/ -->
+    <link rel="stylesheet" href="src/styles/root.css">
+    <!-- ALTERADO: o CSS que estava aqui num <style> foi movido para src/styles/login.css.
+         O "?v=2" obriga o navegador a baixar o login.css novo, em vez de usar a cópia
+         antiga guardada no cache (o arquivo tem o mesmo nome do login antigo).
+         Sempre que alterar o login.css, aumente esse número (v=3, v=4...). -->
+    <link rel="stylesheet" href="src/styles/login.css?v=2">
+</head>
+<body>
+<div id="reimons-login-preview" class="admin-login">
+    <main class="login-page">
+        <div class="login-backdrop" aria-hidden="true"></div>
 
-        <title>Barbearia Reimons | ADM</title>
+        <section class="login-card" aria-labelledby="login-title">
+            <div class="login-brand">
+                <!-- ALTERADO: logo tirado do base64 e salvo em arquivo -->
+                <img src="public/images/logo/dark.svg" width="112" height="72" alt="Barbearia Reimons">
+                <h1 id="login-title">Faça seu login</h1>
+            </div>
 
-        <link rel="shortcut icon" href="public/icons/favicon.png" type="image/x-icon">
+            <!-- ALTERADO: action e method. O formulário agora envia os dados
+                 por POST para o login.php, que confere no banco. -->
+            <form class="login-form" action="login.php" method="post" autocomplete="off">
+                <div class="login-field">
+                    <label for="login">Login</label>
+                    <!-- ALTERADO: name="login". É por esse nome que o PHP lê o campo ($_POST['login']) -->
+                    <input id="login" name="login" type="text"
+                        autocapitalize="none" spellcheck="false" placeholder="seu@email.com" required>
+                </div>
 
-        <link rel="stylesheet" href="src/styles/root.css">
-        <link rel="stylesheet" href="src/styles/login.css">
-    </head>
-    <body>
-        <main>
-            <section>
-                <form action="login.php" method="post">
-                    <div class="input">
-                        <input type="text" name="login" placeholder="johndoe@example.com" required>
-                        <label>Login</label>
+                <div class="login-field">
+                    <label for="password">Senha</label>
+                    <div class="login-password">
+                        <!-- ALTERADO: name="password" ($_POST['password'] no PHP) -->
+                        <input id="password" name="password" type="password"
+                            required>
+                        <button class="login-toggle" type="button" aria-controls="password"
+                            aria-label="Mostrar senha" hidden>Mostrar</button>
                     </div>
-                    <div class="input">
-                        <input type="password" name="password" placeholder="••••••••" required>
-                        <label>Senha</label>
-                    </div>
-                    <input class="btn confirm" type="submit" value="Entrar">
-                    <a href="/" class="btn cancel">Cancelar</a>
-                </form>
-            </section>
-        </main>
-    </body>
+                </div>
+
+                <button class="login-submit" type="submit">Entrar</button>
+                <!-- ALTERADO: "Cancelar" volta para o site, como no login antigo.
+                     Antes era type="reset" e só limpava os campos. -->
+                <a class="login-back" href="./index.html">Cancelar</a>
+                <p class="login-message" role="status" hidden></p>
+            </form>
+        </section>
+    </main>
+</div>
+
+<script>{
+    const preview = document.getElementById('reimons-login-preview');
+    const form = preview.querySelector('.login-form');
+    const password = preview.querySelector('#password');
+    const toggle = preview.querySelector('.login-toggle');
+    const message = preview.querySelector('.login-message');
+
+    function showPassword(show) {
+        password.type = show ? 'text' : 'password';
+        toggle.textContent = show ? 'Ocultar' : 'Mostrar';
+        toggle.setAttribute('aria-label', show ? 'Ocultar senha' : 'Mostrar senha');
+    }
+
+    toggle.hidden = false;
+    password.parentElement.classList.add('login-password--with-toggle');
+    toggle.addEventListener('click', () => showPassword(password.type === 'password'));
+
+    // ALTERADO: o envio não é mais bloqueado (o preventDefault da prévia foi removido).
+    // Agora só desativa o botão para não enviar duas vezes com cliques repetidos.
+    const submit = preview.querySelector('.login-submit');
+    form.addEventListener('submit', () => {
+        submit.disabled = true;
+        submit.textContent = 'Entrando...';
+    });
+    // Ao voltar para esta página pelo botão "voltar" do navegador, reativa o botão
+    window.addEventListener('pageshow', () => {
+        submit.disabled = false;
+        submit.textContent = 'Entrar';
+    });
+
+    // ALTERADO: quando o login.php recusa o acesso, ele volta para
+    // login.html?erro=<código>. Aqui o código vira uma mensagem na tela.
+    const erros = {
+        credenciais: 'Login ou senha incorretos.',
+        desativado:  'Usuário desativado. Procure o administrador.',
+        campos:      'Informe o login e a senha.',
+        sessao:      'Sua sessão terminou. Entre novamente.',
+    };
+    const erro = new URLSearchParams(location.search).get('erro');
+    if (erro) {
+        message.hidden = false;
+        message.classList.add('erro');
+        message.textContent = erros[erro] || 'Não foi possível entrar. Tente novamente.';
+        // Limpa o ?erro= da barra de endereço, para a mensagem sumir ao recarregar
+        history.replaceState(null, '', location.pathname);
+    }
+}</script>
+</body>
 </html>
