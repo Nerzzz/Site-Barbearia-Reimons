@@ -40,4 +40,4 @@ Agendamento
 
 Adicionando novo serviço
 
-![Adicionando novo serviço](./public/gif/agendamento.gif)
+![Adicionando novo serviço](./public/gif/servicos.gif)
