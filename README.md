@@ -34,10 +34,10 @@ Você pode acessar o sistema web através do seguinte link: <a href="https://bar
 
 Agendamento
 
-![Agendamento](./public/gif/agendamento.gif)
+![Agendamento](./client/public/gif/agendamento.gif)
 
 ---
 
 Adicionando novo serviço
 
-![Adicionando novo serviço](./public/gif/agendamento.gif)
+![Adicionando novo serviço](./client/public/gif/agendamento.gif)
