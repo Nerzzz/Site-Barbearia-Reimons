@@ -5,7 +5,7 @@
         $barbeiroId = $_GET['barbeiroId'];
         $data = $_GET['data'];
 
-        $query = 'SELECT TIME_FORMAT(horario, "%H:%i") AS horario FROM agendamento WHERE id_barbeiro = ? AND data = ?';
+        $query = 'SELECT TIME_FORMAT(horario, "%H:%i") AS horario FROM agendamento WHERE id_barbeiro = ? AND data = ? AND id_servico > 0';
         $stmt = mysqli_prepare($conn, $query);
         mysqli_stmt_bind_param($stmt, "is", $barbeiroId, $data);
         mysqli_stmt_execute($stmt);

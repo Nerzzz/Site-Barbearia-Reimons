@@ -398,7 +398,7 @@ footer{
         background-color: var(--color-background);
         padding: 6px 12px;
         width: 100%;
-        outline: none;
+        outline: none !important; 
         background-color: var(--color-white);
         border-radius: 10px;
         border-color: var(--color-light-gray-50);

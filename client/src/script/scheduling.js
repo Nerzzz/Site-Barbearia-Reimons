@@ -149,7 +149,7 @@ form.addEventListener("submit", async (event) => {
         // volta para o index depois de um instante
         setTimeout(() => {
             window.location.href = "index.html";
-        }, 2000);
+        }, 1000);
     } catch {
         showAlert("Erro ao enviar. Tente novamente.", "error");
     }

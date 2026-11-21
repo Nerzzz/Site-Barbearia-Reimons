@@ -26,9 +26,9 @@
     // Tabela de serviços (id, nome, valor, img_url, ativo)
     const TABELA_SERVICOS = 'servicos';
 
-    // Agendamento cancelado = id_servico 999 (não existe serviço com esse id).
+    // Agendamento cancelado = id_servico 0 (não existe serviço com esse id).
     // Assim o cancelamento não apaga o registro e não precisa de coluna nova.
-    const SERVICO_CANCELADO = 999;
+    const SERVICO_CANCELADO = 0;
 
     const DIAS_SEMANA = [1 => 'Seg', 2 => 'Ter', 3 => 'Qua', 4 => 'Qui', 5 => 'Sex', 6 => 'Sáb', 7 => 'Dom'];
 

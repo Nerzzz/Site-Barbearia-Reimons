@@ -319,5 +319,90 @@ form{
         display: flex;
         flex-direction: column;
         gap: 30px;
+        
+        .input{
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            align-items: center;
+            max-width: 100%;
+
+            input, textarea, select{
+                padding: 6px 12px;
+                width: 100%;
+                outline: none;
+                background-color: var(--color-white) !important;
+                border-radius: 10px;
+                border-color: var(--color-light-gray-50);
+            }
+
+            textarea{
+                min-height: 100px;
+                resize: vertical;
+            }
+
+            label{
+                position: absolute;
+                left: 12px;
+                top: 10px;
+                pointer-events: none;
+                font-size: 11pt;
+                background-color: var(--color-background);
+                color: var(--color-gray);
+                transition: 150ms ease-out;
+            }
+
+            input:focus + label, textarea:focus + label,
+            input:not(:placeholder-shown) + label, textarea:not(:placeholder-shown) + label{
+                top: -18px;
+                left: 0;
+                font-size: 10pt;
+            }
+
+            input:focus, textarea:focus{
+                border-color: var(--color-accent);
+            }
+
+            input:focus::placeholder, textarea:focus::placeholder{
+                color: var(--color-light-gray-50);
+            }
+            input:not(:focus)::placeholder, textarea:not(:focus)::placeholder{
+                color: transparent;
+            }
+
+            input.error, textarea.error,
+            input.error:focus, textarea.error:focus{
+                border-color: var(--color-red) !important;
+            }
+
+        }
+    }
+    
+    .form-action{
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 80px;
+        flex-direction: row;
+        width: 100%;
+        gap: 20px;
+
+        input[type="submit"]{
+            background-color: var(--color-accent);
+            border-radius: 10px;
+            border: none;
+            color: var(--color-white);
+        }
+
+        .btn{
+            background-color: var(--color-white);
+            border-radius: 10px;
+            border: 1px solid var(--color-light-gray-50);
+            color: var(--color-black);
+        }
+
+        .btn, input{
+            font-size: 12pt;
+            padding: 12px;
+        }
     }
 }
